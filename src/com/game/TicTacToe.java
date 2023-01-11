@@ -47,6 +47,12 @@ public class TicTacToe {
                     flag = 0;
                     return;
                 }
+                flag = computerCorner();
+                if (flag == 1) {
+                    turn++;
+                    flag = 0;
+                    return;
+                }
             }
         }
     }
@@ -218,6 +224,7 @@ public class TicTacToe {
         }
         return flag;
     }
+
     private static int computerBlock() {
         int index = winBlock(userMark, computerMark);
         if (index != 0) {
@@ -226,5 +233,19 @@ public class TicTacToe {
             flag = 1;
         }
         return flag;
+    }
+
+    private static int computerCorner() {
+        int corner[] = {7, 3, 1, 9};
+        for (int i = 0; i < 4; i++) {
+            if (element[corner[i]] != 'X' && element[corner[i]] != 'O') {
+                element[corner[i]] = computerMark;
+                System.out.println("Computer choice is '" + corner[i] + "'");
+                flag = 1;
+                break;
+            }
+        }
+        return flag;
+
     }
 }
