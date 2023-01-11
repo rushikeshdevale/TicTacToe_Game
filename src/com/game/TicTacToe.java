@@ -37,6 +37,11 @@ public class TicTacToe {
                     break outerloop;
                 }
                 turn++;
+            } else {
+                // To check whether computer is winning or not
+                flag = computerWin();
+                if (flag == 1)
+                    break outerloop;
             }
         }
     }
@@ -178,6 +183,33 @@ public class TicTacToe {
                     flag = 1;
                 }
             }
+        }
+        return flag;
+    }
+
+    private static int winBlock(char playerMark, char opponentMark) {
+        int winBlock[] = new int[3];
+        for (int i = 1; i < 9; i++) {
+            winBlock = winArray(i);
+        }
+        if (element[winBlock[0]] == element[winBlock[1]] && element[winBlock[0]] == playerMark && element[winBlock[2]] != opponentMark) {
+            flag = winBlock[2];
+        } else if (element[winBlock[0]] == element[winBlock[2]] && element[winBlock[2]] == playerMark && element[winBlock[1]] != opponentMark) {
+            flag = winBlock[1];
+        } else if (element[winBlock[1]] == element[winBlock[2]] && element[winBlock[2]] == playerMark && element[winBlock[0]] != opponentMark) {
+            flag = winBlock[0];
+        }
+        return flag;
+    }
+
+    private static int computerWin() {
+        int index = winBlock(computerMark, userMark);
+        if (index != 0) {
+            element[index] = computerMark;
+            System.out.println("My choice is '" + index + "'");
+            currentBoard();
+            System.out.println("I won. Better Luck next time");
+            flag = 1;
         }
         return flag;
     }
