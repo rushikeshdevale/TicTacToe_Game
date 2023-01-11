@@ -13,6 +13,7 @@ public class TicTacToe {
         choosingXorO();
         currentBoard();
         userCall();
+        userMove();
     }
 
     private static void boardCreation() {
@@ -67,4 +68,15 @@ public class TicTacToe {
         }
     }
 
+    private static void userMove() {
+        if (element[userNumber] == 'X' || element[userNumber] == 'O') {
+            currentBoard();
+            System.out.println("Number which is selected is not free");
+            userCall();
+            userMove();
+        } else {
+            element[userNumber] = userMark;
+            System.out.println(userMark + " user is marked " + userNumber);
+        }
+    }
 }
